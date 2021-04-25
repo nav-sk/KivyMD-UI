@@ -1,0 +1,154 @@
+#:import Home colors.Home
+#:import gch kivy.utils.get_color_from_hex
+#: import Effect kivymd.stiffscroll.StiffScrollEffect
+
+<Spacer@Widget>:
+    space: 10
+    size_hint_y: None
+    height: dp(self.space)
+            
+<SearchField@MDBoxLayout>:
+    size_hint_y: None
+    height: self.minimum_height
+    padding: dp(30), 0, dp(30), 0
+    
+    canvas.before:
+        Color:
+            rgba: gch(Home['SearchNorm'])
+        RoundedRectangle:
+            pos: self.pos[0]+dp(15), self.pos[1]+dp(2)
+            size: self.size[0]-dp(30), self.size[1] - dp(5)
+            radius: [dp(27)]
+    
+    MDIcon:
+        icon: 'magnify'
+        size_hint_x: None
+        width: dp(40)
+        font_size: dp(20)
+        theme_text_color: 'Custom'
+        text_color: gch(Home['HintText'])
+        
+    MDTextField:
+        hint_text: 'Search'
+        current_hint_text_color: gch(Home['HintText'])
+        color_mode: 'custom'
+        active_line: False
+        font_size: dp(18)
+        line_color_normal: gch(Home['SearchNorm'])
+        line_color_focus: gch(Home['TextColor'])
+        on_focus:
+            self.hint_text= '' if self.focus else ('Search' if self.text=='' else '')
+            root.children[1].text_color= gch(Home['TextColor']) if self.focus else gch(Home['HintText'])
+
+<Stories@MDBoxLayout>:
+    adaptive_height: True
+    orientation: 'vertical'
+    MDLabel:
+        text: 'Stories'
+        font_style: 'Body1'
+        bold: True
+        italic: True
+        padding: dp(15), dp(0)
+        size_hint_y: None
+        height: self.texture_size[1]+ dp(20)
+        theme_text_color: 'Custom'
+        text_color: gch(Home['TextColor'])
+    
+    ScrollView:
+        size_hint_y: None
+        height: dp(85)
+        do_scroll_y: False
+        bar_width: dp(0)
+        effect_cls: Effect
+        MDBoxLayout:
+            padding: dp(10), 0
+            spacing: dp(20)
+            size_hint: None, 1
+            width: self.minimum_width
+            Story:
+            Story:
+            Story:
+            Story:
+            Story:
+            Story:
+            Story:
+            Story:
+            Story:
+            Story:
+
+<Story@MDBoxLayout>:
+    size_hint_x: None
+    width: self.height - dp(21)
+    orientation: 'vertical'
+    Widget:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [dp(20)]
+                source: 'spiral.png'
+    MDLabel:
+        text: 'Spiral'
+        size_hint_y: None
+        height: self.texture_size[1]+ dp(5)
+        theme_text_color: 'Custom'
+        text_color: gch(Home['TextColor'])
+        halign: 'center'
+        font_style: 'Subtitle2'
+
+<ChatListItem@MDBoxLayout>:
+    adaptive_height: True
+    padding: dp(10), dp(5)
+    MDBoxLayout:
+        adaptive_height: True
+        padding: dp(15),dp(15)
+        height: dp(100)
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(10)]
+        Widget:
+            size_hint: None,None
+            width: self.height
+            canvas:
+                Color:
+                    rgba: 1,1,1,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [dp(20)]
+                    source: 'spiral.png'
+        Widget:
+            size_hint_x: None
+            width: dp(25)
+        MDBoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_y': .5}
+            adaptive_height: True
+            MDLabel:
+                size_hint_y: None
+                height: self.texture_size[1]
+                font_style: 'Subtitle1'
+                bold: True
+                text: 'Spiral'
+            Spacer:
+                space: 3
+            MDLabel:
+                size_hint_y: None
+                height: self.texture_size[1]
+                font_style: 'Caption'
+                theme_text_color: 'Secondary'
+                bold: True
+                text: 'Online'
+        MDIcon:
+            icon: 'checkbox-blank-circle'
+            size_hint_x: None
+            width: dp(20)
+            font_size: dp(15)
+            theme_text_color: 'Custom'
+            text_color: gch('#00E200')

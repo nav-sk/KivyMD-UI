@@ -1,0 +1,74 @@
+#:import Home colors.Home
+#:import gch kivy.utils.get_color_from_hex
+#: import Effect kivymd.stiffscroll.StiffScrollEffect
+#:import status akivymd.uix.statusbarcolor.change_statusbar_color
+#:include uix.kv
+
+ScreenManager:
+    HomeScreen:
+        name: 'Home'
+        on_enter: status(gch(Home['ChatList']))
+
+<HomeScreen>:
+    md_bg_color: gch(Home['Primary'])
+    
+    MDToolbar:
+        id: toolbar
+        title: 'Contacts'
+        #left_action_items: [['checkbox-blank', lambda x: x]]
+        md_bg_color: gch(Home['Primary'])
+        pos_hint:{'top': 1}
+        elevation: dp(0)
+        
+        MDIconButton:
+            pos_hint: {'center_y': .5, 'right': 1}
+            icon: 'plus-box'
+            user_font_size: dp(30)
+            theme_text_color: 'Custom'
+            text_color: 1,1,1,1
+            ripple_scale: .7
+            ripple_alpha: .3
+        
+    MDBoxLayout:
+        id: box
+        y: toolbar.y - self.height
+        orientation: 'vertical'
+        adaptive_height: True
+                
+        Spacer:
+        
+        SearchField:
+        
+        Spacer:
+        
+        Stories:
+        
+        Spacer:
+            space: 20
+            
+    MDBoxLayout:
+        id: chatlist
+        adaptive_height: True
+        padding: [0, dp(5), 0,0]
+        height: root.height - (toolbar.height + box.height)
+        canvas.before:
+            Color:
+                rgba: gch(Home['ChatList'])
+            RoundedRectangle:
+                radius: [dp(20), dp(20),0,0]
+                pos: self.pos
+                size: self.size
+
+        ScrollView:
+            effect_cls: Effect
+            MDList:
+                ChatListItem:
+                ChatListItem:
+                ChatListItem:
+                ChatListItem:
+                ChatListItem:
+                ChatListItem:
+                ChatListItem:
+                ChatListItem:
+                ChatListItem:
+                ChatListItem:

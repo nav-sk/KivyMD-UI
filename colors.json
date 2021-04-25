@@ -1,0 +1,9 @@
+{
+    "Home" : {
+        "Primary" : "#1A1A1A",
+        "SearchNorm" : "#323232",
+        "TextColor" : "#FFFFFF",
+        "HintText" : "#999999",
+        "ChatList" : "#F5F5F5"
+    }
+}
